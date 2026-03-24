@@ -9,7 +9,7 @@ export default defineConfig({
       // Whenever your frontend asks for /api/v2/execute, 
       // Vite will secretly forward it to Piston on port 2000
       '/api': {
-        target: 'http://localhost:2000',
+        target: 'https://codebase-ide.onrender.com',
         changeOrigin: true,
       }
     }
