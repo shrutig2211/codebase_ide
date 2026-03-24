@@ -1,0 +1,42 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- THEME SWIPE ANIMATION --- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  mix-blend-mode: normal;
+}
+
+/* Swiping TO Dark Mode (Left to Right) */
+.dark::view-transition-new(root) {
+  z-index: 10;
+  animation-name: wipe-to-dark;
+}
+.dark::view-transition-old(root) {
+  z-index: 1;
+  animation: none;
+}
+
+/* Swiping TO Light Mode (Right to Left) */
+:root:not(.dark)::view-transition-new(root) {
+  z-index: 10;
+  animation-name: wipe-to-light;
+}
+:root:not(.dark)::view-transition-old(root) {
+  z-index: 1;
+  animation: none;
+}
+
+@keyframes wipe-to-dark {
+  from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+@keyframes wipe-to-light {
+  from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+  to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
