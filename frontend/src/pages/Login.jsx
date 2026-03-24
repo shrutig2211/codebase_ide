@@ -27,7 +27,7 @@ const Login = () => {
           localStorage.setItem("token", data.token);
           localStorage.setItem("isLoggedIn", true);
           localStorage.setItem("fullName", data.fullName);
-          navigate("/");
+          window.location.href = "/";
           toast.success("Welcome back!");
         } else {
           toast.error(data.msg);
