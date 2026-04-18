@@ -17,6 +17,9 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  // Dynamically determine the Piston API URL based on the environment
+  const PISTON_URL = import.meta.env.DEV ? "" : "https://piston-api.duckdns.org";
+
   const handleLanguageChange = (selectedOption) => {
     setSelectedLanguage(selectedOption);
   };
@@ -61,17 +64,24 @@ const Home = () => {
   };
 
   const getRunTimes = async () => {
-    let res = await fetch("/api/v2/runtimes");
-    let data = await res.json();
-    const filteredLanguages = ["python", "javascript","bash"];
-    const options = data
-      .filter((runtime) => filteredLanguages.includes(runtime.language))
-      .map((runtime) => ({
-        label: `${runtime.language.toUpperCase()} (${runtime.version})`,
-        value: runtime.language === "c++" ? "cpp" : runtime.language,
-        version: runtime.version,
-      }));
-    setLanguageOptions(options);
+    try {
+      // Uses the dynamic PISTON_URL
+      let res = await fetch(`${PISTON_URL}/api/v2/runtimes`);
+      let data = await res.json();
+      
+      const filteredLanguages = ["python", "javascript", "bash"];
+      const options = data
+        .filter((runtime) => filteredLanguages.includes(runtime.language))
+        .map((runtime) => ({
+          label: `${runtime.language.toUpperCase()} (${runtime.version})`,
+          value: runtime.language === "c++" ? "cpp" : runtime.language,
+          version: runtime.version,
+        }));
+      setLanguageOptions(options);
+    } catch (error) {
+      console.error("Failed to fetch runtimes:", error);
+      toast.error("Could not connect to the execution engine.");
+    }
   };
 
   const getProjects = async () => {
