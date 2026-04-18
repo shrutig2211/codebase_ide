@@ -168,7 +168,7 @@ const getFileExtension = (lang) => {
     setError(false);
 
     try {
-      const response = await fetch("https://sk7312-codeorbit-piston-engine.hf.space/api/v2/execute", {
+      const response = await fetch("https://piston-api.duckdns.org/api/v2/execute", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
