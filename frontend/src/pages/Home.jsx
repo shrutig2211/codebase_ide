@@ -63,7 +63,7 @@ const Home = () => {
   const getRunTimes = async () => {
     let res = await fetch("/api/v2/runtimes");
     let data = await res.json();
-    const filteredLanguages = ["python", "javascript", "typescript", "c", "c++", "java", "csharp", "go", "rust", "ruby", "php", "bash"];
+    const filteredLanguages = ["python", "javascript","bash"];
     const options = data
       .filter((runtime) => filteredLanguages.includes(runtime.language))
       .map((runtime) => ({
