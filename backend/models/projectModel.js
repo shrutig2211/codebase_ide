@@ -9,7 +9,7 @@ let projectSchema = new mongoose.Schema({
     type: String,
     required: true,
     // Add the new languages here:
-    enum: ["python", "java", "javascript", "cpp", "c", "go", "bash", "ruby", "typescript", "csharp", "rust", "php"]
+    enum: ["python", "java", "javascript", "bash"]
   },
   code: {
     type: String,
