@@ -1,1 +1,1 @@
-export const api_base_url = "https://codebase-ide-y4ep.onrender.com";
+export const api_base_url = "https://codebase-ide-1.onrender.com/";
