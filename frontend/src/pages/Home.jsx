@@ -18,7 +18,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   // Dynamically determine the Piston API URL based on the environment
-  const PISTON_URL = import.meta.env.DEV ? "" : "https://piston-api.duckdns.org";
+  const PISTON_URL = "https://piston-api.duckdns.org";
 
   const handleLanguageChange = (selectedOption) => {
     setSelectedLanguage(selectedOption);
