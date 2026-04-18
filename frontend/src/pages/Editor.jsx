@@ -17,6 +17,9 @@ const Editor = () => {
     localStorage.getItem("editor-theme") || "vs-dark"
   );
 
+  // Dynamically determine the Piston API URL based on the environment
+  const PISTON_URL = "https://piston-api.duckdns.org";
+
   // Layout States
   const [editorWidth, setEditorWidth] = useState(50);
   const [consoleHeight, setConsoleHeight] = useState(50);
@@ -168,7 +171,8 @@ const getFileExtension = (lang) => {
     setError(false);
 
     try {
-      const response = await fetch("https://piston-api.duckdns.org/api/v2/execute", {
+      // Uses the dynamic PISTON_URL
+      const response = await fetch(`${PISTON_URL}/api/v2/execute`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
